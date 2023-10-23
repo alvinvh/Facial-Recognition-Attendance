@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} Database {% endblock %}
+{% block content %}
+<style>
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+</style>
+<form action="/showdb" method="post">
+        Select Classroom: <select name="table_name" id="table_name">
+        <option value="" selected="selected">Select a classroom</option>
+        {% for i in dropdownlist: %}
+        <option value="{{i}}">{{i}}</option>
+        {% endfor%}
+        </select>
+        <div class="form-group">
+			<button class="btn btn-primary">Submit</button>
+		</div>
+		</form>
+
+<table>
+  <thead>
+    <tr>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Student Attendance</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if data != None %}
+     {% for row in data: %}
+
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>
+                {% if row[2] == True: %}
+                    <img src="{{url_for('static', filename='True.jfif')}}" width="25" height="25" align="middle" sizes="15"/>
+                {% else: %}
+                    <img src="{{url_for('static', filename='False.jfif')}}" width="25" height="25" align="middle" sizes="15"/>
+                {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}

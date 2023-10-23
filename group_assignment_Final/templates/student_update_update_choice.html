@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Create classroom {% endblock %}
+{% block content %}
+<h1>Choose an action</h1>
+
+<form action="/student_update_3" method="post">
+ Select an Action: <select name="choice" id="choice">
+        <option value="{{ dropdownlist }}" selected="selected">Select an action</option>
+        {% for i in dropdownlist: %}
+        <option value="{{i}}">{{i}}</option>
+        {% endfor%}
+        </select>
+  <button type="submit" class="btn btn-primary" name="table_name" id="table_name" value="{{table}}">Submit</button>
+</form>
+{% endblock %}

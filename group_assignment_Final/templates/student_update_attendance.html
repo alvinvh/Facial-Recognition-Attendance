@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} Create classroom {% endblock %}
+{% block content %}
+<h1>Choose a student</h1>
+
+<form action="/student_update_attendance" method="post">
+ Select Student: <select name="student_id" id="student_id">
+        <option value="{{ dropdownlist_stu }}" selected="selected">Select a student to be updated :</option>
+        {% for i in dropdownlist_stu: %}
+        <option value="{{i}}">{{i}}</option>
+        {% endfor%}
+        </select>
+  Select Attendance: <select name="student_attendance" id="student_attendance">
+        <option value="{{ dropdownlist }}" selected="selected">Select a student to be updated :</option>
+        {% for i in dropdownlist: %}
+        <option value="{{i}}">{{i}}</option>
+        {% endfor%}
+        </select>
+  <button type="submit" class="btn btn-primary" name="table_name" id="table_name" value="{{table}}">Update</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Student Attendance</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if data != None %}
+     {% for row in data: %}
+
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>
+                {% if row[2] == True: %}
+                    <img src="{{url_for('static', filename='True.jfif')}}" width="25" height="25" align="middle" sizes="15"/>
+                {% else: %}
+                    <img src="{{url_for('static', filename='False.jfif')}}" width="25" height="25" align="middle" sizes="15"/>
+                {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}

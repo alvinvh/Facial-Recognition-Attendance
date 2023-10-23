@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Create classroom {% endblock %}
+{% block content %}
+<h1>Creating classroom</h1>
+
+<form action="/form_table" method="post">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Classroom Name" name="classroom">
+  </div>
+  <p>{{message}}</p>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

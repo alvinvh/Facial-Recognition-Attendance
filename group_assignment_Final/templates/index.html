@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} Home Page {% endblock %}
+{% block content %}
+<img src="/facerecog/{{table}}" width="50%" />
+
+<form action="#" method="post" >
+    <button type="submit" class="btn btn-primary" name="table_name" id="table_name" value="{{table}}">Scan Again</button>
+</form>
+
+{% endblock %}
